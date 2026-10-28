@@ -40,10 +40,7 @@ export function ImagePlaceholder({ slot, ratio, tone = "ice", className, priorit
       className={cn("relative overflow-hidden", toneClass[tone], className)}
       style={style}
     >
-      <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3 text-[0.72rem] font-medium md:inset-x-5 md:bottom-5">
-        <span className="min-w-0 truncate">{slot.label}</span>
-        <span className="shrink-0 font-mono opacity-70">{slot.id}</span>
-      </div>
+
     </div>
   );
 }

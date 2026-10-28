@@ -24,7 +24,8 @@ export function SiteFooter() {
           <address className="mt-4 text-sm not-italic leading-relaxed">
             {location.street && <>{location.street}<br /></>}
             {location.region}<br />
-            {location.city}, {location.state}
+            {location.city}, {location.state}<br />
+            CEP {location.postalCode}
           </address>
           <a href={getMapsUrl()} target="_blank" rel="noreferrer" className="mt-3 inline-block text-sm underline underline-offset-4">
             Abrir no Google Maps
@@ -38,7 +39,7 @@ export function SiteFooter() {
             ) : (
               <li className="text-on-ocean-muted">Instagram em breve</li>
             )}
-            {contact.phone && <li><a href={`tel:${contact.phone}`}>{contact.phone}</a></li>}
+            {contact.phone && <li><a href={contact.phoneHref}>{contact.phone}</a></li>}
             {contact.email && <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>}
             {!contact.phone && !contact.email && <li className="text-on-ocean-muted">Contatos a confirmar</li>}
           </ul>
