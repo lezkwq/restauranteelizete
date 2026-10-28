@@ -19,7 +19,7 @@ export const Route = createFileRoute("/cardapio")({
 });
 
 function Cardapio() {
-  const [active, setActive] = useState<MenuCategoryId>(categories[0].id);
+  const [active, setActive] = useState<MenuCategoryId>("petiscos");
   const tabsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

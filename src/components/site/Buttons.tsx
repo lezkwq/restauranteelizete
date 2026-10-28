@@ -19,4 +19,4 @@ export const btn = cva(
 );
 
 export type BtnProps = VariantProps<typeof btn>;
-export const btnClass = (p: BtnProps & { className?: string }) => cn(btn(p), p.className);
+export const btnClass = (p: BtnProps & { className?: string | undefined }) => cn(btn(p), p.className);
