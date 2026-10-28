@@ -8,3 +8,8 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep restaurant configuration and menu products in browser-safe centralized data modules; no backend is needed for this editorial catalog.
+- Model preparation options, accompaniments and additions on one menu item to avoid duplicate products; publish only populated categories.
+- Keep unknown prices and commercial WhatsApp numbers nullable and hide their public actions until confirmed.
+- Serve the uploaded opening photographs through asset pointers and a responsive picture element; keep cinematic shading in CSS tokens.

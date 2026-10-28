@@ -1,5 +1,5 @@
 /**
- * Configuração central do site. Preencha os campos com null quando
+ * Configuração central do site. Use null nos campos ainda não
  * confirmados. Componentes ocultam ou desabilitam ações sem dados válidos.
  */
 export const site = {
@@ -8,20 +8,22 @@ export const site = {
   location: {
     region: "Praia do Estaleiro",
     city: "Balneário Camboriú",
-    state: "Santa Catarina",
+    state: "SC",
     /** Endereço completo confirmado. Ex.: "Rua ..., 123" */
-    street: null as string | null,
+    street: "Av. Rodesindo Pavan, 10205",
     /** Link do Google Maps. Se null, usa busca pelo nome do restaurante. */
-    mapsUrl: null as string | null,
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Restaurante+Elizete+Av+Rodesindo+Pavan+10205+Balneario+Camboriu+SC",
+    postalCode: "88334-540",
   },
   /** Horários confirmados. Ex.: [{ days: "Terça a domingo", hours: "11h às 16h" }] */
   hours: [] as { days: string; hours: string }[],
   contact: {
     /** Somente dígitos com DDI. Ex.: "5547999999999". null desativa o WhatsApp. */
     whatsapp: null as string | null,
-    phone: null as string | null,
+    phone: "(47) 3368-9946",
+    phoneHref: "tel:+554733689946",
     email: null as string | null,
-    instagram: null as string | null,
+    instagram: "https://www.instagram.com/restauranteelizete/",
   },
   /** Indicadores de reputação. Atualize conforme o Google. */
   reputation: [

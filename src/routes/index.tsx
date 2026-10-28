@@ -1,4 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import heroDesktop from "@/assets/elizete-hero-desktop.png.asset.json";
+import heroMobile from "@/assets/elizete-hero-mobile.png.asset.json";
+import { MarineMark } from "@/components/site/MarineMark";
 import { ImagePlaceholder } from "@/components/site/ImagePlaceholder";
 import { btnClass } from "@/components/site/Buttons";
 import { WhatsappButton } from "@/components/site/WhatsappButton";
@@ -13,6 +16,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Há mais de 30 anos servindo frutos do mar com vista para o oceano na Praia do Estaleiro, Balneário Camboriú." },
       { property: "og:title", content: "Restaurante Elizete | O mar à mesa" },
       { property: "og:description", content: "Tradição, frutos do mar e bons momentos na Praia do Estaleiro, Balneário Camboriú." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
@@ -35,23 +40,19 @@ function Home() {
 
 function Hero() {
   return (
-    <section id="inicio" className="relative scroll-mt-20">
-      <div className="container-editorial grid gap-8 pt-8 pb-14 lg:grid-cols-12 lg:gap-0 lg:pt-10 lg:pb-20">
-        <div className="relative z-10 flex flex-col justify-end lg:col-span-5 lg:py-16 lg:pr-8">
-          <p className="eyebrow animate-rise text-primary">Praia do Estaleiro, Balneário Camboriú</p>
-          <h1 className="display-xl animate-rise mt-6 text-ocean [animation-delay:80ms] lg:-mr-48">
-            O mar <em className="text-primary">à mesa.</em>
-          </h1>
-          <p className="animate-rise mt-8 max-w-sm text-lg leading-relaxed text-muted-foreground [animation-delay:160ms]">
-            Tradição, frutos do mar e bons momentos na Praia do Estaleiro.
-          </p>
-          <div className="animate-rise mt-10 flex flex-wrap gap-3 [animation-delay:240ms]">
-            <Link to="/cardapio" className={btnClass({})}>Conhecer o cardápio</Link>
-            <a href="#localizacao" className={btnClass({ variant: "outline" })}>Como chegar</a>
-          </div>
-        </div>
-        <div className="lg:col-span-7">
-          <ImagePlaceholder slot={media.heroOceano} tone="royal" priority className="aspect-[4/5] sm:aspect-[4/3] lg:aspect-auto lg:h-[min(78vh,760px)]" />
+    <section id="inicio" className="hero-scene relative isolate scroll-mt-20 overflow-hidden text-on-ocean">
+      <picture className="absolute inset-0 -z-20">
+        <source media="(max-width: 767px)" srcSet={heroMobile.url} />
+        <img src={heroDesktop.url} alt="Peixes, camarões, lagosta e frutos do mar sobre gelo" fetchPriority="high" className="h-full w-full object-cover" />
+      </picture>
+      <div className="hero-shade absolute inset-0 -z-10" />
+      <div className="container-editorial flex h-full flex-col justify-end pt-28 pb-14 md:pb-20">
+        <p className="eyebrow animate-rise text-on-ocean/80">Restaurante Elizete</p>
+        <h1 className="hero-title animate-rise mt-6 [animation-delay:80ms]">O mar <em>à mesa.</em></h1>
+        <p className="animate-rise mt-7 max-w-md text-lg leading-relaxed text-on-ocean/90 [animation-delay:160ms]">Mais de 30 anos de tradição, frutos do mar e bons momentos na Praia do Estaleiro.</p>
+        <div className="animate-rise mt-8 flex flex-wrap gap-3 [animation-delay:240ms]">
+          <Link to="/cardapio" className={btnClass({ variant: "light" })}>Ver cardápio</Link>
+          <a href={getMapsUrl()} target="_blank" rel="noreferrer" className={btnClass({ variant: "ghostLight" })}>Como chegar</a>
         </div>
       </div>
     </section>
@@ -65,7 +66,7 @@ function Reputation() {
         {site.reputation.map((r) => (
           <div key={r.label} className="px-2 py-8 text-center sm:px-6 md:py-10">
             <dt className="sr-only">{r.label}</dt>
-            <dd className="font-display text-5xl leading-none text-primary md:text-7xl">{r.value}</dd>
+            <dd className="font-display text-4xl leading-none text-primary md:text-5xl">{r.value}</dd>
             <dd className="mt-3 text-xs font-medium text-muted-foreground sm:text-sm">{r.label}</dd>
           </div>
         ))}
@@ -81,17 +82,18 @@ function Gastronomia() {
     const it = items[i];
     if (!it) return null;
     return (
-      <div className="mt-4 flex items-baseline justify-between gap-4">
+      <div className="mt-4 flex flex-wrap items-baseline justify-between gap-3">
         <div className="min-w-0">
           <p className="text-xs font-semibold text-primary">{categoryLabel(it.category)}</p>
-          <h3 className="mt-1 truncate text-2xl text-ocean md:text-3xl">{it.name}</h3>
+          <h3 className="mt-1 text-2xl leading-tight text-ocean md:text-3xl">{it.name}</h3>
         </div>
         <Link to="/cardapio" hash={it.category} className="shrink-0 text-sm font-semibold text-primary hover:underline underline-offset-4">Ver no cardápio</Link>
       </div>
     );
   };
   return (
-    <section className="container-editorial py-20 md:py-32">
+    <section className="container-editorial relative py-20 md:py-32">
+      <MarineMark className="mb-8 w-28 text-primary/30" />
       <div className="grid gap-6 md:grid-cols-12 md:items-end">
         <h2 className="display-lg text-ocean md:col-span-7">Sabores que contam <em className="text-primary">nossa história.</em></h2>
         <p className="max-w-sm text-muted-foreground md:col-span-4 md:col-start-9">
@@ -197,9 +199,9 @@ function PreviaCardapio({ items }: { items: ReturnType<typeof featuredItems> }) 
                 />
                 <div className="mt-4 flex items-baseline justify-between gap-3">
                   <h3 className="min-w-0 text-2xl text-ocean group-hover:text-primary">{it.name}</h3>
-                  <span className="shrink-0 text-sm font-semibold">{formatPrice(it.price)}</span>
+                  {it.price != null && <span className="shrink-0 text-sm font-semibold">{formatPrice(it.price)}</span>}
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{it.description}</p>
+                {it.description && <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{it.description}</p>}
               </Link>
             </li>
           ))}
@@ -223,20 +225,21 @@ function Localizacao() {
             <WhatsappButton variant="outline" label="Falar pelo WhatsApp" message={`Olá! Gostaria de mais informações sobre o ${site.name}.`} />
           </div>
         </div>
-        <dl className="grid gap-8 sm:grid-cols-3 md:col-span-7">
+        <dl className="grid gap-8 sm:grid-cols-2 md:col-span-7">
           <InfoBlock title="Endereço">
             <p className="text-ocean">{site.name}</p>
             {location.street && <p>{location.street}</p>}
             <p>{location.region}</p>
             <p>{location.city}, {location.state}</p>
+            <p>CEP {location.postalCode}</p>
           </InfoBlock>
-          <InfoBlock title="Horário">
-            {hours.length ? hours.map((h) => <p key={h.days}>{h.days}: {h.hours}</p>) : <p>Horários a confirmar</p>}
-          </InfoBlock>
+          {hours.length > 0 && <InfoBlock title="Horário">
+            {hours.map((h) => <p key={h.days}>{h.days}: {h.hours}</p>)}
+          </InfoBlock>}
           <InfoBlock title="Contato">
-            {contact.phone && <p><a href={`tel:${contact.phone}`}>{contact.phone}</a></p>}
+            {contact.phone && <p><a href={contact.phoneHref}>{contact.phone}</a></p>}
             {contact.email && <p><a href={`mailto:${contact.email}`}>{contact.email}</a></p>}
-            {!contact.phone && !contact.email && <p>Contatos a confirmar</p>}
+            <p><a href={contact.instagram} target="_blank" rel="noreferrer">Instagram</a></p>
           </InfoBlock>
         </dl>
       </div>
