@@ -76,7 +76,7 @@ function Reputation() {
 
 function Gastronomia() {
   const items = featuredItems();
-  const slots = [media.pratoDestaque01, media.pratoDestaque02, media.pratoDestaque03, media.pratoDestaque04];
+  const slots = [media.pratoDestaque01, media.pratoDestaque02, media.pratoDestaque03, media.pratoDestaque04] as const;
   const Caption = ({ i }: { i: number }) => {
     const it = items[i];
     if (!it) return null;
