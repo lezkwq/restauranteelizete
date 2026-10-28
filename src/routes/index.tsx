@@ -1,6 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroDesktop from "@/assets/elizete-hero-desktop.png.asset.json";
-import heroMobile from "@/assets/elizete-hero-mobile.png.asset.json";
 import { MarineMark } from "@/components/site/MarineMark";
 import { ImagePlaceholder } from "@/components/site/ImagePlaceholder";
 import { btnClass } from "@/components/site/Buttons";
@@ -42,8 +40,8 @@ function Hero() {
   return (
     <section id="inicio" className="hero-scene relative isolate scroll-mt-20 overflow-hidden text-on-ocean">
       <picture className="absolute inset-0 -z-20">
-        <source media="(max-width: 767px)" srcSet={heroMobile.url} />
-        <img src={heroDesktop.url} alt="Peixes, camarões, lagosta e frutos do mar sobre gelo" fetchPriority="high" className="h-full w-full object-cover" />
+        <source media="(max-width: 767px)" srcSet="/images/hero-mobile.png" />
+        <img src="/images/hero-desktop.png" alt="Peixes, camarões, lagosta e frutos do mar sobre gelo" fetchPriority="high" className="h-full w-full object-cover" />
       </picture>
       <div className="hero-shade absolute inset-0 -z-10" />
       <div className="container-editorial flex h-full flex-col justify-end pt-28 pb-14 md:pb-20">
