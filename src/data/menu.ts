@@ -39,8 +39,8 @@ export const menu: MenuItem[] = [
     ["sopa-frutos-mar", "Sopa de frutos do mar na caneca"], ["salada-palmito", "Salada de palmito"],
     ["isca-peixe", "Isca de peixe à milanesa"], ["peixe-frito", "Peixe frito"],
     ["maionese-lagosta", "Maionese de lagosta"], ["maionese-camarao", "Maionese de camarão"],
-  ].map(([id, name]) => dish("petiscos", id, name)),
-  ...["Salmão", "Congro", "Linguado"].map((name) => dish("files", name.toLowerCase(), name, {
+  ].map(([id, name]) => dish("petiscos", id ?? "", name ?? "")),
+  ...["Salmão", "Congro", "Linguado"].map((name) => dish("files", name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(), name, {
     options: filletOptions, accompaniments: filletSides, additions: filletAdditions,
   })),
   dish("camaroes", "camarao-elizete", "Camarão Elizete", { featured: true, description: "Empanado com queijo parmesão." }),
@@ -49,7 +49,7 @@ export const menu: MenuItem[] = [
     ["camarao-grelhado", "Camarão grelhado"], ["strogonoff-camarao", "Strogonoff de camarão"],
     ["camarao-punta", "Camarão à Punta del Este"], ["camarao-parmegiana", "Camarão à parmegiana"],
     ["camarao-grega", "Camarão à grega"], ["camarao-baiana", "Camarão à baiana"], ["camarao-tropical", "Camarão tropical"],
-  ].map(([id, name]) => dish("camaroes", id, name)),
+  ].map(([id, name]) => dish("camaroes", id ?? "", name ?? "")),
   dish("peixes", "misto-interpraias", "Misto à milanesa Interpraias"),
   dish("peixes", "misto-estaleirinho", "Misto grelhado Estaleirinho"),
   dish("peixes", "file-milanesa", "Filé de peixe à milanesa", { featured: true }),

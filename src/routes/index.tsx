@@ -233,13 +233,13 @@ function Localizacao() {
             <p>{location.city}, {location.state}</p>
             <p>CEP {location.postalCode}</p>
           </InfoBlock>
-          <InfoBlock title="Horário">
-            {hours.length ? hours.map((h) => <p key={h.days}>{h.days}: {h.hours}</p>) : <p>Horários a confirmar</p>}
-          </InfoBlock>
+          {hours.length > 0 && <InfoBlock title="Horário">
+            {hours.map((h) => <p key={h.days}>{h.days}: {h.hours}</p>)}
+          </InfoBlock>}
           <InfoBlock title="Contato">
             {contact.phone && <p><a href={contact.phoneHref}>{contact.phone}</a></p>}
             {contact.email && <p><a href={`mailto:${contact.email}`}>{contact.email}</a></p>}
-            {!contact.phone && !contact.email && <p>Contatos a confirmar</p>}
+            <p><a href={contact.instagram} target="_blank" rel="noreferrer">Instagram</a></p>
           </InfoBlock>
         </dl>
       </div>
