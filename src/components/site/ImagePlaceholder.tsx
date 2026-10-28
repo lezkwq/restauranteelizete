@@ -27,6 +27,7 @@ export function ImagePlaceholder({ slot, ratio, tone = "ice", className, priorit
           src={slot.src}
           alt={slot.alt}
           loading={priority ? "eager" : "lazy"}
+          decoding="async"
           className="absolute inset-0 h-full w-full object-cover"
         />
       </div>

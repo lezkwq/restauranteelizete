@@ -1,7 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/logo-elizete.png.asset.json";
 import { nav, site } from "@/data/site";
 import { btnClass } from "./Buttons";
 import { cn } from "@/lib/utils";
@@ -35,7 +34,7 @@ export function SiteHeader() {
   return <header className={cn("sticky top-0 z-50 border-b transition-colors duration-300", pathname === "/" && "-mb-18 md:-mb-20", immersive ? "border-on-ocean/15 bg-transparent text-on-ocean" : "border-border bg-background/95 text-ocean", !immersive && !open && "backdrop-blur")}>
     <div className="container-editorial grid h-18 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 md:h-20 lg:grid-cols-[auto_1fr_auto]">
       <Link to="/" className="flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
-        <img src={logo.url} alt={site.name} className="h-11 w-11 shrink-0 rounded-full md:h-12 md:w-12" />
+        <img src="/images/logo-elizete.png" alt={site.name} width={48} height={48} className="h-11 w-11 shrink-0 rounded-full md:h-12 md:w-12" />
         <span className="font-display text-3xl leading-none">Elizete<span className="mt-1 block font-sans text-[0.65rem] font-semibold">RESTAURANTE</span></span>
       </Link>
       <nav aria-label="Principal" className="hidden justify-center gap-10 lg:flex">{nav.map((n) => <a key={n.href} href={n.href} className="text-sm font-medium transition-opacity hover:opacity-70">{n.label}</a>)}</nav>

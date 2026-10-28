@@ -16,7 +16,7 @@ export const site = {
     postalCode: "88334-540",
   },
   /** Horários confirmados. Ex.: [{ days: "Terça a domingo", hours: "11h às 16h" }] */
-  hours: [] as { days: string; hours: string }[],
+  hours: [{ days: "Todos os dias", hours: "11h às 18h" }] as { days: string; hours: string }[],
   contact: {
     /** Somente dígitos com DDI. Ex.: "5547999999999". null desativa o WhatsApp. */
     whatsapp: null as string | null,
@@ -29,7 +29,7 @@ export const site = {
   reputation: [
     { value: "4,8", label: "Nota no Google" },
     { value: "500+", label: "Avaliações de clientes" },
-    { value: "30+", label: "Anos de tradição" },
+    { value: "30+", label: "Anos de experiência" },
   ],
 } as const;
 

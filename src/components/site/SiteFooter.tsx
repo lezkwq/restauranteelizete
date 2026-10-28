@@ -8,7 +8,7 @@ export function SiteFooter() {
         <div>
           <p className="font-display text-4xl">{site.name}</p>
           <p className="mt-3 max-w-xs text-sm text-on-ocean-muted">
-            Frutos do mar e tradição há mais de 30 anos na {location.region}.
+            Uma casa de família, comida feita na hora e o mar da {location.region} logo ali.
           </p>
         </div>
         <div>
@@ -43,6 +43,7 @@ export function SiteFooter() {
             {contact.email && <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>}
             {!contact.phone && !contact.email && <li className="text-on-ocean-muted">Contatos a confirmar</li>}
           </ul>
+          {site.hours.map((h) => <p key={h.days} className="mt-4 text-sm text-on-ocean-muted">{h.days}, das {h.hours}.</p>)}
         </div>
       </div>
       <div className="border-t border-ocean-line">

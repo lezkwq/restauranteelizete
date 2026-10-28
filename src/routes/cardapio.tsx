@@ -6,6 +6,8 @@ import { MarineMark } from "@/components/site/MarineMark";
 import { btnClass } from "@/components/site/Buttons";
 import { visibleCategories, menu, type MenuCategoryId } from "@/data/menu";
 import { cn } from "@/lib/utils";
+import { ImagePlaceholder } from "@/components/site/ImagePlaceholder";
+import { media } from "@/data/media";
 
 export const Route = createFileRoute("/cardapio")({
   head: () => ({ meta: [
@@ -42,11 +44,16 @@ function Cardapio() {
       <p className="eyebrow text-primary">Restaurante Elizete</p>
       <h1 className="display-lg mt-5 text-ocean">Nosso <em className="text-primary">cardápio.</em></h1>
       <MarineMark className="absolute top-12 right-10 hidden w-44 text-primary/25 md:block" />
+      <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">Feito na hora, do nosso jeito. Escolha entre os petiscos, peixes, camarões e outros preparos da casa.</p>
       <div className="mt-8 flex max-w-md items-center gap-3 border-b border-primary py-3">
         <Search className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
         <input type="search" aria-label="Buscar prato" placeholder="Buscar prato" value={search} onChange={(e) => setSearch(e.target.value)} className="min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground" />
         {search && <button aria-label="Limpar busca" className={btnClass({ variant: "link", className: "h-8 w-8" })} onClick={() => setSearch("")}><X className="h-4 w-4" /></button>}
       </div>
+      <figure className="mt-10">
+        <ImagePlaceholder slot={media.cardapioCapa} ratio="16/7" />
+        <figcaption className="mt-3 text-sm text-muted-foreground">Um pouco do que sai da nossa cozinha. Os preparos e acompanhamentos variam conforme o prato escolhido.</figcaption>
+      </figure>
     </section>
     <nav aria-label="Categorias do cardápio" className="sticky top-18 z-40 border-y border-border bg-background/95 backdrop-blur md:top-20">
       <div ref={tabsRef} className="container-editorial no-scrollbar flex gap-6 overflow-x-auto py-3">

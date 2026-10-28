@@ -20,8 +20,8 @@ describe("Confirmed restaurant data", () => {
   it("retains the confirmed Instagram", () => {
     expect(site.contact.instagram).toBe("https://www.instagram.com/restauranteelizete/");
   });
-  it("does not invent opening hours", () => {
-    expect(site.hours).toEqual([]);
+  it("uses the opening hours from the supplied restaurant post", () => {
+    expect(site.hours).toEqual([{ days: "Todos os dias", hours: "11h às 18h" }]);
   });
   it("retains the Google reputation and tradition figures", () => {
     expect(site.reputation.map((r) => r.value)).toEqual(["4,8", "500+", "30+"]);
