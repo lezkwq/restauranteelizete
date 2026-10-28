@@ -18,7 +18,8 @@ export const site = {
   /** Horários confirmados. Ex.: [{ days: "Terça a domingo", hours: "11h às 16h" }] */
   hours: [{ days: "Todos os dias", hours: "11h às 18h" }] as { days: string; hours: string }[],
   contact: {
-    /** Somente dígitos com DDI. Ex.: "5547999999999". null desativa o WhatsApp. */
+    /** WhatsApp comercial confirmado, somente dígitos com DDI. null desativa pedidos.
+     * Não preencher automaticamente com o telefone fixo abaixo. */
     whatsapp: null as string | null,
     phone: "(47) 3368-9946",
     phoneHref: "tel:+554733689946",

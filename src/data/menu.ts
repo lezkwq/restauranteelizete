@@ -69,6 +69,6 @@ export const menu: MenuItem[] = [
 /** Only populated groups are public; remaining groups are ready for confirmed products. */
 export const visibleCategories = categories.filter((c) => menu.some((m) => m.category === c.id));
 export const formatPrice = (price: number | null | undefined) => price == null ? null : price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-export const whatsappMessageFor = (item: MenuItem) => `Olá! Vi o prato ${item.name} no cardápio do Restaurante Elizete${item.price == null ? "" : ` por ${formatPrice(item.price)}`} e gostaria de consultar a disponibilidade e o valor.`;
+export const whatsappMessageFor = (item: MenuItem) => `Olá! Estava olhando o cardápio do Restaurante Elizete e gostaria de pedir o ${item.name}. Poderiam me confirmar a disponibilidade e o valor?`;
 export const featuredItems = () => menu.filter((i) => i.featured && i.available);
 export const categoryLabel = (id: MenuCategoryId) => categories.find((c) => c.id === id)?.label ?? id;

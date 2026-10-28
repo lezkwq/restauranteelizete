@@ -35,6 +35,6 @@ describe("Confirmed restaurant data", () => {
     const item = menu.find((i) => i.id === "camarao-elizete");
     expect(item).toBeDefined();
     if (!item) throw new Error("Missing confirmed dish");
-    expect(whatsappMessageFor(item)).toBe("Olá! Vi o prato Camarão Elizete no cardápio do Restaurante Elizete e gostaria de consultar a disponibilidade e o valor.");
+    expect(whatsappMessageFor(item)).toBe("Olá! Estava olhando o cardápio do Restaurante Elizete e gostaria de pedir o Camarão Elizete. Poderiam me confirmar a disponibilidade e o valor?");
   });
 });
