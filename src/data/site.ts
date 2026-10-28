@@ -20,7 +20,7 @@ export const site = {
   contact: {
     /** WhatsApp comercial confirmado, somente dígitos com DDI. null desativa pedidos.
      * Não preencher automaticamente com o telefone fixo abaixo. */
-    whatsapp: null as string | null,
+    whatsapp: "554796993755" as string | null,
     phone: "(47) 3368-9946",
     phoneHref: "tel:+554733689946",
     email: null as string | null,

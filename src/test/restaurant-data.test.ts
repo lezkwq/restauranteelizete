@@ -8,9 +8,10 @@ describe("Confirmed restaurant data", () => {
     expect(menu.every((item) => item.price === null)).toBe(true);
     expect(formatPrice(null)).toBeNull();
   });
-  it("does not activate WhatsApp from the public telephone", () => {
+  it("uses the confirmed WhatsApp number, separate from the public telephone", () => {
     expect(site.contact.phoneHref).toBe("tel:+554733689946");
-    expect(getWhatsappUrl("Olá")).toBeNull();
+    expect(site.contact.whatsapp).toBe("554796993755");
+    expect(getWhatsappUrl("Olá")).toBe("https://wa.me/554796993755?text=Ol%C3%A1");
   });
   it("retains the confirmed address and Maps location", () => {
     expect(site.location.street).toBe("Av. Rodesindo Pavan, 10205");
