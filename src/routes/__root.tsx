@@ -85,10 +85,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const shareImage = new URL("/images/lagosta-ilustracao.png", useRouter().origin).href;
   return (
     <html lang="pt-BR">
       <head>
         <HeadContent />
+        <meta property="og:image" content={shareImage} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1774" />
+        <meta property="og:image:height" content="887" />
+        <meta property="og:image:alt" content="Ilustração de lagosta do Restaurante Elizete sobre fundo azul" />
+        <meta name="twitter:image" content={shareImage} />
+        <meta name="twitter:image:alt" content="Ilustração de lagosta do Restaurante Elizete sobre fundo azul" />
       </head>
       <body>
         {children}
