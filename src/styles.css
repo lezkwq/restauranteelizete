@@ -60,6 +60,8 @@
   --on-ocean: var(--white);
   --on-ocean-muted: oklch(0.82 0.03 250);
   --ocean-line: oklch(1 0 0 / 16%);
+  --hero-overlay: linear-gradient(90deg, oklch(0.19 0.07 262 / 86%) 0%, oklch(0.23 0.07 262 / 58%) 46%, oklch(0.23 0.07 262 / 12%) 100%), linear-gradient(0deg, oklch(0.19 0.07 262 / 55%), transparent 70%);
+  --hero-overlay-mobile: linear-gradient(0deg, oklch(0.18 0.07 262 / 94%) 0%, oklch(0.22 0.07 262 / 78%) 35%, oklch(0.24 0.07 262 / 18%) 78%, oklch(0.2 0.07 262 / 60%) 100%);
 
   --background: var(--white);
   --foreground: var(--graphite);
@@ -99,7 +101,7 @@
   h1, h2, h3 {
     font-family: var(--font-display);
     font-weight: 400;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
     line-height: 1.02;
   }
   ::selection {
@@ -125,7 +127,7 @@
   font-family: var(--font-sans);
   font-size: 0.8125rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -138,15 +140,18 @@
 }
 
 @utility display-xl {
-  font-size: clamp(3.5rem, 13vw, 10.5rem);
+  font-size: 4rem;
+  @media (min-width: 768px) { font-size: 7rem; }
   line-height: 0.9;
 }
 @utility display-lg {
-  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-size: 2.75rem;
+  @media (min-width: 768px) { font-size: 5rem; }
   line-height: 0.98;
 }
 @utility display-md {
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-size: 2.25rem;
+  @media (min-width: 768px) { font-size: 3.5rem; }
   line-height: 1.02;
 }
 
@@ -198,3 +203,14 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+.hero-scene { height: min(850px, calc(100svh - 28px)); min-height: 620px; }
+.hero-shade { background: var(--hero-overlay-mobile); }
+.hero-title { font-size: 4.75rem; line-height: 0.95; max-width: 500px; }
+@media (min-width: 768px) {
+  .hero-scene { min-height: 580px; }
+  .hero-shade { background: var(--hero-overlay); }
+  .hero-title { font-size: 7.5rem; max-width: 780px; }
+}
+@media (min-width: 1280px) { .hero-title { font-size: 9rem; max-width: 940px; } }
+@media (max-width: 380px) { .hero-title { font-size: 4rem; } }
