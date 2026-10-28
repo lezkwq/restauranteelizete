@@ -19,6 +19,12 @@ export function SiteHeader() {
   }, []);
   useEffect(() => { setOpen(false); }, [pathname]);
   useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const closeOnDesktop = () => { if (desktop.matches) setOpen(false); };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
+  useEffect(() => {
     if (!open) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -26,7 +32,7 @@ export function SiteHeader() {
     window.addEventListener("keydown", onKey);
     return () => { document.body.style.overflow = previous; window.removeEventListener("keydown", onKey); };
   }, [open]);
-  return <header className={cn("sticky top-0 z-50 border-b transition-colors duration-300", pathname === "/" && "-mb-18 md:-mb-20", immersive ? "border-on-ocean/15 bg-transparent text-on-ocean" : "border-border bg-background/95 text-ocean backdrop-blur")}>
+  return <header className={cn("sticky top-0 z-50 border-b transition-colors duration-300", pathname === "/" && "-mb-18 md:-mb-20", immersive ? "border-on-ocean/15 bg-transparent text-on-ocean" : "border-border bg-background/95 text-ocean", !immersive && !open && "backdrop-blur")}>
     <div className="container-editorial grid h-18 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 md:h-20 lg:grid-cols-[auto_1fr_auto]">
       <Link to="/" className="flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
         <img src={logo.url} alt={site.name} className="h-11 w-11 shrink-0 rounded-full md:h-12 md:w-12" />
