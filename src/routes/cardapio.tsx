@@ -11,9 +11,9 @@ import { media } from "@/data/media";
 
 export const Route = createFileRoute("/cardapio")({
   head: () => ({ meta: [
-    { title: "Cardápio | Restaurante Elizete" },
+    { title: "Cardápio | Restaurante Elizete na Praia do Estaleiro" },
     { name: "description", content: "Consulte petiscos, filés, camarões e frutos do mar do Restaurante Elizete, na Praia do Estaleiro." },
-    { property: "og:title", content: "Nosso cardápio | Restaurante Elizete" },
+    { property: "og:title", content: "Cardápio | Restaurante Elizete na Praia do Estaleiro" },
     { property: "og:description", content: "Os sabores do Restaurante Elizete, dos petiscos aos preparos de frutos do mar." },
     { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
   ] }), component: Cardapio,

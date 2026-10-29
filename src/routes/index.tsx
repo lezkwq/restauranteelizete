@@ -11,7 +11,7 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Restaurante Elizete | Frutos do mar na Praia do Estaleiro" },
       { name: "description", content: "Uma casa de família, comida feita na hora e uma mesa de frente para o mar na Praia do Estaleiro, Balneário Camboriú." },
-      { property: "og:title", content: "Restaurante Elizete | O mar à mesa" },
+      { property: "og:title", content: "Restaurante Elizete | Frutos do mar na Praia do Estaleiro" },
       { property: "og:description", content: "Tradição, frutos do mar e bons momentos na Praia do Estaleiro, Balneário Camboriú." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

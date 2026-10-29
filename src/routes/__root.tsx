@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
@@ -15,6 +16,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { btnClass } from "@/components/site/Buttons";
+import { getRestaurantSchema, getSeoOrigin, publicPagePaths } from "@/data/seo";
 
 function NotFoundComponent() {
   return (
@@ -85,11 +87,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
-  const shareImage = new URL("/images/lagosta-ilustracao.png", useRouter().origin).href;
+  const origin = getSeoOrigin(useRouter().origin);
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const isPublicPage = publicPagePaths.some((path) => path === pathname);
+  const shareImage = new URL("/images/lagosta-ilustracao.png", origin).href;
+  const pageUrl = new URL(pathname, origin).href;
   return (
     <html lang="pt-BR">
       <head>
         <HeadContent />
+        {isPublicPage ? <>
+          <link rel="canonical" href={pageUrl} />
+          <meta property="og:url" content={pageUrl} />
+          <meta property="og:locale" content="pt_BR" />
+          <meta property="og:site_name" content="Restaurante Elizete" />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getRestaurantSchema(origin)).replace(/</g, "\\u003c") }} />
+        </> : <meta name="robots" content="noindex" />}
         <meta property="og:image" content={shareImage} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1774" />
