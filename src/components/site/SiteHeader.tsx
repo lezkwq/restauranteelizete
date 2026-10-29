@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { nav, site } from "@/data/site";
 import { btnClass } from "./Buttons";
+import { WhatsappButton } from "./WhatsappButton";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -40,11 +41,12 @@ export function SiteHeader() {
       <nav aria-label="Principal" className="hidden justify-center gap-10 lg:flex">{nav.map((n) => <a key={n.href} href={n.href} className="text-sm font-medium transition-opacity hover:opacity-70">{n.label}</a>)}</nav>
       <div className="flex items-center gap-2">
         <Link to="/cardapio" className={btnClass({ size: "sm", variant: immersive ? "ghostLight" : "primary", className: "hidden sm:inline-flex" })}>Ver cardápio</Link>
+        <WhatsappButton size="sm" variant={immersive ? "ghostLight" : "primary"} label="Reservar mesa" message="Olá! Gostaria de reservar uma mesa no Restaurante Elizete. Poderiam me informar a disponibilidade?" className="hidden sm:inline-flex" />
         <button type="button" className={btnClass({ variant: "link", className: "h-11 w-11 min-h-11 text-inherit lg:hidden" })} aria-expanded={open} aria-controls="menu-mobile" aria-label={open ? "Fechar menu" : "Abrir menu"} onClick={() => setOpen((v) => !v)}>{open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}</button>
       </div>
     </div>
     {open && <div id="menu-mobile" className="fixed inset-x-0 top-18 bottom-0 overflow-y-auto bg-background text-ocean md:top-20 lg:hidden">
-      <nav aria-label="Menu mobile" className="container-editorial flex flex-col pt-8">{nav.map((n) => <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="border-b border-border py-5 font-display text-4xl">{n.label}</a>)}<Link to="/cardapio" onClick={() => setOpen(false)} className={btnClass({ className: "mt-10" })}>Ver cardápio</Link></nav>
+      <nav aria-label="Menu mobile" className="container-editorial flex flex-col pt-8">{nav.map((n) => <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="border-b border-border py-5 font-display text-4xl">{n.label}</a>)}<Link to="/cardapio" onClick={() => setOpen(false)} className={btnClass({ className: "mt-10" })}>Ver cardápio</Link><WhatsappButton label="Reservar mesa" message="Olá! Gostaria de reservar uma mesa no Restaurante Elizete. Poderiam me informar a disponibilidade?" className="mt-3" /></nav>
     </div>}
   </header>;
 }

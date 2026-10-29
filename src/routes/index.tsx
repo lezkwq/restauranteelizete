@@ -48,6 +48,7 @@ function Hero() {
         <p className="animate-rise mt-7 max-w-md text-lg leading-relaxed text-on-ocean/90 [animation-delay:160ms]">Uma casa de família, comida feita na hora e uma mesa de frente para o mar.</p>
         <div className="animate-rise mt-8 flex flex-wrap gap-3 [animation-delay:240ms]">
           <Link to="/cardapio" className={btnClass({ variant: "light" })}>Ver cardápio</Link>
+          <WhatsappButton variant="ghostLight" label="Reservar mesa" message="Olá! Gostaria de reservar uma mesa no Restaurante Elizete. Poderiam me informar a disponibilidade?" />
           <a href={getMapsUrl()} target="_blank" rel="noreferrer" className={btnClass({ variant: "ghostLight" })}>Como chegar</a>
         </div>
       </div>
