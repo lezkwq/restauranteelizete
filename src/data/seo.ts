@@ -1,4 +1,4 @@
-import { site } from "./site";
+import { getMapsUrl, getWhatsappUrl, site } from "./site";
 
 /** Domínio escolhido pelo proprietário; ainda depende de registro e conexão. */
 export const plannedSiteOrigin = "https://restauranteelizete.com.br";
@@ -15,15 +15,26 @@ export function getSeoOrigin(currentOrigin: string) {
 
 export function getRestaurantSchema(origin: string) {
   const url = (path: string) => new URL(path, origin).href;
+  const whatsappUrl = getWhatsappUrl();
   return {
     "@context": "https://schema.org",
     "@type": "Restaurant",
     "@id": url("/#restaurante"),
     name: site.name,
+    description: "Uma casa de família, comida feita na hora e uma mesa de frente para o mar na Praia do Estaleiro, Balneário Camboriú.",
     url: url("/"),
     image: url("/images/fachada-elizete.png"),
     logo: url("/images/logo-elizete.png"),
     telephone: site.contact.phoneHref.slice(4),
+    ...(whatsappUrl ? {
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "reservas e informações",
+        telephone: `+${site.contact.whatsapp}`,
+        url: whatsappUrl,
+        availableLanguage: "pt-BR",
+      },
+    } : {}),
     address: {
       "@type": "PostalAddress",
       streetAddress: site.location.street,
@@ -36,6 +47,7 @@ export function getRestaurantSchema(origin: string) {
     openingHours: "Mo-Su 11:00-18:00",
     servesCuisine: "Frutos do mar",
     hasMenu: url("/cardapio"),
+    hasMap: getMapsUrl(),
     sameAs: [site.contact.instagram],
   };
 }

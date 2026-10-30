@@ -6,7 +6,7 @@ export const Route = createFileRoute("/robots.txt")({
     handlers: {
       GET: ({ request }) => {
         const origin = getSeoOrigin(new URL(request.url).origin);
-        return new Response(`User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`, {
+        return new Response(`User-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`, {
           headers: { "Content-Type": "text/plain; charset=utf-8" },
         });
       },
